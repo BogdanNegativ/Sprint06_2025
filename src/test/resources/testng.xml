@@ -1,0 +1,12 @@
+<suite name="UI Test Suite">
+    <listeners>
+        <listener class-name="utils.Listeners"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="All Tests">
+        <classes>
+            <class name="tests.SearchTests"/>
+        </classes>
+    </test>
+</suite>
