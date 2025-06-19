@@ -29,16 +29,4 @@ public class ProductPage extends BasePage{
     public List<String> getTextsOfElements(SearchPageElements locator) {
         return waitElementsAreVisible(locator.getLocator()).texts();
     }
-
-    @Step("Scroll to {locator}")
-    public ProductPage scrollTo(SearchPageElements locator) {
-        $x(locator.getLocator()).shouldBe(visible).scrollIntoCenter();
-        return this;
-    }
-
-    @Step("Click on {locator}")
-    public ProductPage clickOn(SearchPageElements locator) {
-        $x(locator.getLocator()).shouldBe(clickable).click();
-        return this;
-    }
 }

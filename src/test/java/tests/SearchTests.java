@@ -31,7 +31,7 @@ public class SearchTests extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
 
         homePage
-                .openUrl()
+                .openHomePage()
                 .scrollTo(SEARCH_FIELD)
                 .clickOn(SEARCH_FIELD)
                 .typeInSearchField(SEARCH_QUERY_UKRAINIAN, SEARCH_FIELD)

@@ -22,8 +22,8 @@ public class HomePage extends BasePage {
     }
 
     @Step("Open home page")
-    public HomePage openUrl() {
-        open(HOME_URL);
+    public HomePage openHomePage() {
+        openUrl(HOME_URL);
         return this;
     }
 

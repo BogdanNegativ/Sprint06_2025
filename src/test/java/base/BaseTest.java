@@ -1,9 +1,7 @@
 package base;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +9,10 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Objects;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners({utils.Listeners.class, io.qameta.allure.testng.AllureTestNg.class})
 public class BaseTest {
@@ -25,15 +24,16 @@ public class BaseTest {
     }
 
     @BeforeSuite
-    public void setupSuite() throws IOException {
+    public void setupSuite() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        ChromeDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        WebDriverRunner.setWebDriver(driver);
+        options.addArguments("--start-maximized");
 
-
+        Configuration.browserCapabilities = options;
+        Configuration.browser = "chrome";
+        Configuration.holdBrowserOpen = false;
+        
         LOGGER.info("Selenide конфігурація: browser = {}, baseUrl = {}, headless = {}",
                 Configuration.browser, Configuration.baseUrl, Configuration.headless);
     }
