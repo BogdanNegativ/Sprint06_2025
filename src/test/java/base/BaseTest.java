@@ -26,7 +26,6 @@ public class BaseTest {
 
     @BeforeSuite
     public void setupSuite() throws IOException {
-        // SetUp WebDriver Chrome without another browser (WebDriverManager)
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");

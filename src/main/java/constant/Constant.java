@@ -8,6 +8,6 @@ public class Constant {
         public static final String MAKS = "Maks";
         public static final String BOHDAN = "Bohdan";
         public static final String VADIM = "Vadim";
-        public static final String SONIA = "Sofia";
+        public static final String SONIA = "Sonia";
     }
 }

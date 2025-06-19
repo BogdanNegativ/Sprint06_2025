@@ -4,20 +4,21 @@ import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 
 public class HomePage extends BasePage {
     private static final String HOME_URL = BASE_URL;
 
-
     @Getter
     @AllArgsConstructor
     public enum HomePageElements {
-        SEARCH_FIELD("//*[@class='SearchLineDesktop']//input"),
+        SEARCH_FIELD("//*[@data-marker='Search Input']"),
         SEARCH_BUTTON("//*[@class='SearchBox__icon']");
 
-        private final String element;
+        private final String locator;
     }
 
     @Step("Open home page")
@@ -26,21 +27,23 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    @Step("Скролимо до елемента {element}")
-    public HomePage scrollTo(HomePageElements element) {
-        $x(element.getElement()).scrollIntoCenter();
+    @Step("Scroll to {locator}")
+    public HomePage scrollTo(HomePageElements locator) {
+        $x(locator.getLocator()).shouldBe(visible).scrollIntoCenter();
         return this;
     }
 
-    @Step("Клікаємо на {element}")
-    public HomePage clickOn(HomePageElements element) {
-        $x(element.getElement()).click();
+    @Step("Click on {locator}")
+    public HomePage clickOn(HomePageElements locator) {
+        $x(locator.getLocator()).shouldBe(clickable).click();
         return this;
     }
 
-    @Step("Вводимо текст '{text}' у поле {element}")
-    public HomePage typeInSearchField(String text, HomePageElements element) {
-        $x(element.getElement()).setValue(text);
+
+
+    @Step("Input text '{text}' into field {locator}")
+    public HomePage typeInSearchField(String text, HomePageElements locator) {
+        $x(locator.getLocator()).shouldBe(editable).setValue(text);
         return this;
     }
 }
