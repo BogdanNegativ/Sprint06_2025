@@ -14,7 +14,6 @@ public class BasePage {
 
     public void openUrl(String url){
         open(url);
-        getWebDriver().manage().window().maximize();
     }
 
     public ElementsCollection waitElementsAreVisible(String locator) {
